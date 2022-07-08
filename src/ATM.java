@@ -10,7 +10,7 @@ public class ATM {
 		loggedInIndex = -1;// index for non logged in
 	}
 
-	public void createUser(String name, String pass) {// initialising
+	public void createUser(String name, String pass) {// Initializing
 		accNames.add(name);
 		accPass.add(pass);
 		accBalance.add((float) 0.0);
@@ -46,7 +46,31 @@ public class ATM {
 		}
 	}
 
-	public void withdraw() {
+	public void withdraw(float amount) {
+		if (loggedInIndex == -1) { // checks its not logged out
+			System.out.println("Not logged in");
+			return;
+		} else {
+			if (accBalance.get(loggedInIndex) >= amount) {
+				System.out.println("Withdrew $" + amount);
+				accBalance.set(loggedInIndex, (accBalance.get(loggedInIndex) - amount));
+				this.Balance();
+			} else {
+				System.out.println("Balance not enough");
+			}
+		}
+
+	}
+
+	public void deposit(float amount) {
+		if (loggedInIndex == -1) { // checks its not logged out
+			System.out.println("Not logged in");
+			return;
+		} else {
+			System.out.println("Depostied $" + amount);
+			accBalance.set(loggedInIndex, (accBalance.get(loggedInIndex) + amount));
+			this.Balance();
+		}
 
 	}
 
