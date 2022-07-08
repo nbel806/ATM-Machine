@@ -14,6 +14,7 @@ public class ATM {
 		accNames.add(name);
 		accPass.add(pass);
 		accBalance.add((float) 0.0);
+		System.out.println("User Created balance is $0.0");
 	}
 
 	public void login(String name, String pass) {
