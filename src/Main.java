@@ -24,7 +24,9 @@ public class Main {
 	}
 
 	private void start() {
+		System.out.println("");
 		System.out.println("Welcome to ATM, log in or create and account to start");
+		System.out.println("");
 		printMenu();
 		String command;
 		do {
