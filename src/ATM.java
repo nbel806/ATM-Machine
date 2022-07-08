@@ -15,6 +15,7 @@ public class ATM {
 		accPass.add(pass);
 		accBalance.add((float) 0.0);
 		System.out.println("User Created balance is $0.0");
+		System.out.println("New account made succesfully, now login to use");
 	}
 
 	public void login(String name, String pass) {
@@ -27,7 +28,7 @@ public class ATM {
 		}
 
 		if (accPass.get(loggedInIndex).equals(pass)) {// Checks password is correct
-
+			System.out.println("Login succesfull");
 		} else {
 			System.out.println("Wrong Password");
 			loggedInIndex = -1;
@@ -56,6 +57,7 @@ public class ATM {
 				System.out.println("Withdrew $" + amount);
 				accBalance.set(loggedInIndex, (accBalance.get(loggedInIndex) - amount));// removes amount from balance
 				this.Balance();
+				System.out.println("Withdraw succesfull");
 			} else {
 				System.out.println("Balance not enough");
 			}
@@ -71,6 +73,7 @@ public class ATM {
 			System.out.println("Depostied $" + amount);
 			accBalance.set(loggedInIndex, (accBalance.get(loggedInIndex) + amount));// adds amount to balance
 			this.Balance();
+			System.out.println("Deposited succesfull");
 		}
 
 	}
@@ -81,7 +84,8 @@ public class ATM {
 			moneyToIndex = accNames.indexOf(accName);
 		} else {
 			System.out.println("UserName doesnt exsist");// Account doesn't exist so will break for new name
-			loggedInIndex = -1;
+			System.out.println("Check UserName and try again");
+			moneyToIndex = -1;
 			return;
 		}
 		if (accBalance.get(loggedInIndex) >= amount) {
@@ -93,6 +97,7 @@ public class ATM {
 			System.out.println("Could not transfer, not enough money in account");
 			System.out.println("Deposit money and try again");
 			this.Balance();
+			System.out.println("Money transfered succesfull");
 		}
 	}
 

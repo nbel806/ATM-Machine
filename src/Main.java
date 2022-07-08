@@ -35,9 +35,6 @@ public class Main {
 	}
 
 	private boolean processCommand(String command) {
-		if (command.contains(" ")) {
-			return processCommand(command.split(" "));
-		}
 		switch (command) {
 		case menu:
 			printMenu();
@@ -70,36 +67,86 @@ public class Main {
 			break;
 		default:
 			System.out.println("Error, command not found");
+			break;
 		}
 		return true;
 
 	}
 
+	private void getTransfer() {
+		float amount = 0;
+		String accountTo = null;
+		System.out.println("Enter amount to transfer : ");
+		amount = scanner.nextFloat();
+		scanner.nextLine();
+		System.out.println("Enter account UserName to transfer to: ");
+		accountTo = scanner.nextLine().trim();
+		atm.transfer(amount, accountTo);
+	}
+
+	private void getDeposit() {
+		float amount = 0;
+		System.out.println("Enter amount to deposit : ");
+		amount = scanner.nextFloat();
+		scanner.nextLine();
+		atm.deposit(amount);
+	}
+
+	private void getWithdraw() {
+		float amount = 0;
+		System.out.println("Enter amount to withdraw : ");
+		amount = scanner.nextFloat();
+		scanner.nextLine();
+		atm.withdraw(amount);
+	}
+
+	private void getLogin() {
+		String userName = null;
+		String password = null;
+		System.out.println("UserName: ");
+		userName = scanner.nextLine().trim();
+		System.out.println("Password: ");
+		password = scanner.nextLine().trim();
+		atm.login(userName, password);
+	}
+
 	private void getNewAcc() {
-		String userName;
+		String userName = null;
 		String userNameAgain;
+		String password = null;
+		String passwordAgain;
 		boolean complete = false;
-		while (!complete) {
+		while (!complete) { // loops until username is entered
 			System.out.println("To create a new account follow steps");
 			System.out.println("New UserName: ");
 			userName = scanner.nextLine().trim();
 			System.out.println("Confirm New UserName: ");
 			userNameAgain = scanner.nextLine().trim();
-			if (userName.equals(userNameAgain)) {
+			if (userName.equals(userNameAgain)) {// checks they are same
 				complete = true;
 			}
 		}
-
+		complete = false;
+		while (!complete) {// loops until password is entered
+			System.out.println("New Password: ");
+			password = scanner.nextLine().trim();
+			System.out.println("Confirm New Password: ");
+			passwordAgain = scanner.nextLine().trim();
+			if (password.equals(passwordAgain)) {// checks they are same
+				complete = true;
+			}
+		}
+		atm.createUser(userName, password);
 	}
 
 	private void printMenu() {
-		System.out.println("menu     shows main menu" + System.lineSeparator()
-				+ "new      creates new user with password and username" + System.lineSeparator()
-				+ "login    logs user into their acc" + System.lineSeparator() + "balance  displays current balance"
-				+ System.lineSeparator() + "withdraw removes chosen amount from acc" + System.lineSeparator()
-				+ "deposit  adds the chosen amount to acc" + System.lineSeparator()
-				+ "transfer transfers specified acc from logged in acc to desired acc" + System.lineSeparator()
-				+ "logout   logs the current user out" + System.lineSeparator() + "off      turns off ATM");
+		System.out.println("menu       shows main menu" + System.lineSeparator()
+				+ "new        creates new user with password and username" + System.lineSeparator()
+				+ "login      logs user into their acc" + System.lineSeparator() + "balance    displays current balance"
+				+ System.lineSeparator() + "withdraw   removes chosen amount from acc" + System.lineSeparator()
+				+ "deposit    adds the chosen amount to acc" + System.lineSeparator()
+				+ "transfer   transfers specified acc from logged in acc to desired acc" + System.lineSeparator()
+				+ "logout     logs the current user out" + System.lineSeparator() + "off        turns off ATM");
 	}
 
 }
